@@ -1,0 +1,47 @@
+.logo{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: relative;
+
+  background-color: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(10px);               /* 👈 blur effect */
+  -webkit-backdrop-filter: blur(10px);       /* Safari support */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);          /* optional soft shadow */
+  z-index: 999; /* stay on top of background */
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+}
+
+
+.icon-toggle {
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon-toggle i {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon-toggle:hover i {
+  transform: scale(1.2);
+  opacity: 0.85;
+}
+

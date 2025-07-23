@@ -1,0 +1,38 @@
+<div [ngSwitch]="homeLabelState">
+
+  <!-- HOME Section (default case) -->
+  <section *ngSwitchDefault class="section-container home-section">
+    <div class="overlay">
+      <div class="content">
+        <div>
+          <h1 #hackerText>MARKJARNAIZ</h1>
+          <h2>A software engineer</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID Section (when homeLabelState === 0) -->
+  <section *ngSwitchCase="0" class="section-container">
+    <div class="overlay">
+      <div class="content">
+        <div class="card-grid">
+          <div class="card" #cardRef *ngFor="let card of cards">
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDER Section (when homeLabelState === 1) -->
+  <section *ngSwitchCase="1" class="section-container">
+    <div class="overlay">
+      <div class="content">
+        <div>THIS SLIDER WILL BE AVAILABLE SOON...</div>
+      </div>
+    </div>
+  </section>
+
+</div>

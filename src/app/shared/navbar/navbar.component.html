@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="logo">Markjarnaiz</div>
+  <ul class="nav-links">
+    <li>
+      <a (click)="onIconClick()" class="icon-toggle">
+        <ng-container [ngSwitch]="sharedService.getHomeState()">
+          <i *ngSwitchCase="0" class="fas fa-sliders-h"></i>
+          <i *ngSwitchCase="1" class="fas fa-home"></i>
+          <i *ngSwitchDefault class="fas fa-grip"></i>
+        </ng-container>
+      </a>
+    </li>
+  </ul>
+</nav>
