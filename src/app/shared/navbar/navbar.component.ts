@@ -18,4 +18,8 @@ export class NavbarComponent {
     this.sharedService.cycleHomeState();
   }
 
+   onBackgroundIconClick() {
+    this.sharedService.cycleBackgroundState();
+  }
+
 }

@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer" [ngClass]="{ 'light-footer': sharedService.getBackgroundState() === 1 }">
   <div class="footer-content">
     <!-- Left: Social Icons -->
     <div class="footer-icons">

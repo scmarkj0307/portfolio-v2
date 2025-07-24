@@ -62,3 +62,22 @@
   }
 }
 
+
+/* Light mode styles */
+.light-footer {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: black;
+}
+
+.light-footer .footer-icons a {
+  color: black;
+}
+
+.light-footer .footer-icons a:hover {
+  color: #555; /* Slightly darker on hover */
+}
+
+.light-footer .footer-text {
+  color: black;
+}
+

@@ -19,6 +19,7 @@ import { SharedService } from '../../shared.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
+  backgroundState = 2; 
   homeLabelState = 2;
   cards = [
     { title: 'Card 1', description: 'This is the first card.' },
@@ -43,6 +44,9 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
     this.sharedService.homeState$.subscribe((state) => {
       this.homeLabelState = state;
       this.hasAnimated = false; // Reset animation on state change
+    });
+      this.sharedService.backgroundState$.subscribe((state) => {
+      this.backgroundState = state;
     });
   }
 
@@ -96,4 +100,14 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
       });
     });
   }
+
+  getBackgroundClass(): string {
+    switch (this.backgroundState) {
+      case 0: return 'cosmos-background';
+      case 1: return 'plain-white-background';
+      default: return 'image-background';
+    }
+  }
+
+
 }

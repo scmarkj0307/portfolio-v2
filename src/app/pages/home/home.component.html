@@ -1,7 +1,6 @@
 <div [ngSwitch]="homeLabelState">
-
   <!-- HOME Section (default case) -->
-  <section *ngSwitchDefault class="section-container home-section">
+  <section *ngSwitchDefault [ngClass]="getBackgroundClass()" class="section-container">
     <div class="overlay">
       <div class="content">
         <div>
@@ -13,7 +12,7 @@
   </section>
 
   <!-- GRID Section (when homeLabelState === 0) -->
-  <section *ngSwitchCase="0" class="section-container">
+  <section *ngSwitchCase="0" [ngClass]="getBackgroundClass()" class="section-container">
     <div class="overlay">
       <div class="content">
         <div class="card-grid">
@@ -27,12 +26,11 @@
   </section>
 
   <!-- SLIDER Section (when homeLabelState === 1) -->
-  <section *ngSwitchCase="1" class="section-container">
+  <section *ngSwitchCase="1" [ngClass]="getBackgroundClass()" class="section-container">
     <div class="overlay">
       <div class="content">
         <div>THIS SLIDER WILL BE AVAILABLE SOON...</div>
       </div>
     </div>
   </section>
-
 </div>

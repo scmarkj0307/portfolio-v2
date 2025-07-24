@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { SharedService } from '../../shared.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-   year = new Date().getFullYear();
+  year = new Date().getFullYear();
+
+  constructor(public sharedService: SharedService) {}
 }

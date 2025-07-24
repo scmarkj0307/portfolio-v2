@@ -45,3 +45,22 @@
   opacity: 0.85;
 }
 
+
+/* Light mode navbar override */
+.light-navbar {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: black;
+}
+
+.light-navbar .logo {
+  color: black;
+}
+
+.light-navbar .nav-links a {
+  color: black;
+}
+
+.light-navbar .icon-toggle i {
+  color: black;
+}
+

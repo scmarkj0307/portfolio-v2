@@ -1,6 +1,15 @@
-<nav class="navbar">
+<nav class="navbar" [ngClass]="{'light-navbar': sharedService.getBackgroundState() === 1}">
   <div class="logo">Markjarnaiz</div>
   <ul class="nav-links">
+    <li>
+      <a (click)="onBackgroundIconClick()" class="icon-toggle">
+        <ng-container [ngSwitch]="sharedService.getBackgroundState()">
+          <i *ngSwitchCase="0" class="fas fa-sun"></i>
+          <i *ngSwitchCase="1" class="fas fa-palette"></i>
+          <i *ngSwitchDefault class="fas fa-moon"></i>
+        </ng-container>
+      </a>
+    </li>
     <li>
       <a (click)="onIconClick()" class="icon-toggle">
         <ng-container [ngSwitch]="sharedService.getHomeState()">
