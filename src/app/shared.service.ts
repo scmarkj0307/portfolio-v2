@@ -1,16 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
+  private backgroundStateKey = 'backgroundState';
+  private isBrowser: boolean;
+
+
   private homeState = new BehaviorSubject<number>(2); // default = HOME
   homeState$ = this.homeState.asObservable();
 
-  private backgroundState = new BehaviorSubject<number>(2); // default = HOME
-  backgroundState$ = this.backgroundState.asObservable();
+  private backgroundState: BehaviorSubject<number>;
+  backgroundState$;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+  const initialBackgroundState = this.isBrowser && localStorage.getItem(this.backgroundStateKey) !== null
+  ? +localStorage.getItem(this.backgroundStateKey)!
+  : 1;
+  
+   this.backgroundState = new BehaviorSubject<number>(initialBackgroundState);
+   this.backgroundState$ = this.backgroundState.asObservable(); }
+
+//for home state
   setHomeState(state: number) {
     this.homeState.next(state);
   }
@@ -24,8 +41,12 @@ export class SharedService {
     this.setHomeState(newState);
   }
 
-  setBackgroundState(state: number) {
+//for background state
+   setBackgroundState(state: number) {
     this.backgroundState.next(state);
+    if (this.isBrowser) {
+      localStorage.setItem(this.backgroundStateKey, state.toString());
+    }
   }
 
   getBackgroundState() {

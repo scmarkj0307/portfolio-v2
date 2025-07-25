@@ -11,6 +11,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../shared.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
@@ -58,6 +61,8 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
 
   private letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private intervalMap = new Map<HTMLElement, ReturnType<typeof setInterval>>();
+  private destroy$ = new Subject<void>();
+
 
   @ViewChildren('cardRef') cardRefs!: QueryList<ElementRef>;
   @ViewChildren('hackerText') hackerTextRefs!: QueryList<ElementRef>;
@@ -71,14 +76,26 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
   ) {}
 
   ngOnInit() {
-    this.sharedService.homeState$.subscribe((state) => {
-      this.homeLabelState = state;
-      this.hasAnimated = false; // Reset animation on state change
-    });
-      this.sharedService.backgroundState$.subscribe((state) => {
-      this.backgroundState = state;
-    });
+    this.sharedService.homeState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((state) => {
+        this.homeLabelState = state;
+        this.hasAnimated = false;
+      });
+
+    this.sharedService.backgroundState$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((state) => {
+        this.backgroundState = state;
+      });
   }
+
+    ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+
 
   ngAfterViewInit(): void {
     this.setupHackerTextAnimation();
