@@ -22,13 +22,38 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
   backgroundState = 2; 
   homeLabelState = 2;
   cards = [
-    { title: 'Card 1', description: 'This is the first card.' },
-    { title: 'Card 2', description: 'This is the second card.' },
-    { title: 'Card 3', description: 'This is the third card.' },
-    { title: 'Card 4', description: 'This is the fourth card.' },
-    { title: 'Card 5', description: 'This is the fifth card.' },
-    { title: 'Card 6', description: 'This is the sixth card.' },
-  ];
+  {
+    title: 'About Me',
+    description: 'Click to see my personal info',
+    image: '/assets/about/card1.png'
+  },
+  {
+    title: 'Projects',
+    description: 'Click to see my sample works',
+    image: '/assets/about/card2.png'
+  },
+  {
+    title: 'Experience',
+    description: 'Click to see my experience',
+    image: '/assets/about/card3.png'
+  },
+  {
+    title: 'Technologies',
+    description: 'Click to see the list of tech stacks I\'ve used in my projects',
+    image: '/assets/about/card4.png'
+  },
+  {
+    title: 'Certificates',
+    description: 'Click to see my certificates',
+    image: '/assets/about/card5.png'
+  },
+  {
+    title: 'Contacts',
+    description: 'Click to see my contact details',
+    image: '/assets/about/card6.png'
+  }
+];
+
 
   private letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private intervalMap = new Map<HTMLElement, ReturnType<typeof setInterval>>();

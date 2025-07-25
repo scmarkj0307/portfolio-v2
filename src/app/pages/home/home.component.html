@@ -17,8 +17,11 @@
       <div class="content">
         <div class="card-grid">
           <div class="card" #cardRef *ngFor="let card of cards">
-            <h3>{{ card.title }}</h3>
-            <p>{{ card.description }}</p>
+            <div class="card-image" [ngStyle]="{'background-image': 'url(' + card.image + ')'}"></div>
+            <div class="card-content">
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.description }}</p>
+            </div>
           </div>
         </div>
       </div>
