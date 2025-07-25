@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -63,7 +64,11 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
 
   hasAnimated = false;
 
-  constructor(private renderer: Renderer2, private sharedService: SharedService) {}
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit() {
     this.sharedService.homeState$.subscribe((state) => {
@@ -134,5 +139,17 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
     }
   }
 
-
+  navigateTo(title: string) {
+    switch (title) {
+      case 'About Me':
+        this.router.navigate(['/about']);
+        break;
+      case 'Projects':
+        this.router.navigate(['/projects']);
+        break;
+      case 'Contacts':
+        this.router.navigate(['/contact']);
+        break;
+    }
+  }
 }
