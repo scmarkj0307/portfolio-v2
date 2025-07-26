@@ -21,7 +21,7 @@ export class CertificatesComponent implements OnInit, OnDestroy  {
   
     ngOnInit(): void {
       this.subscription = this.sharedService.homeState$.subscribe(state => {
-        if (state === 2) {
+        if (state === 0) {
           this.router.navigate(['/']);
         }
       });
