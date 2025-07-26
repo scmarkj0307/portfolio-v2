@@ -1,5 +1,5 @@
 <nav class="navbar" [ngClass]="{'light-navbar': sharedService.getBackgroundState() === 1}">
-  <div class="logo">Markjarnaiz</div>
+  <div class="logo" (click)="goToRootAndSetHomeState()" title="Go back to Homapage">Markjarnaiz</div>
   <ul class="nav-links">
 
     <li>
