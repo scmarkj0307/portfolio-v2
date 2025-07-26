@@ -22,7 +22,7 @@ export class SharedService {
 
   const initialBackgroundState = this.isBrowser && localStorage.getItem(this.backgroundStateKey) !== null
   ? +localStorage.getItem(this.backgroundStateKey)!
-  : 1;
+  : 0;
   
    this.backgroundState = new BehaviorSubject<number>(initialBackgroundState);
    this.backgroundState$ = this.backgroundState.asObservable(); }

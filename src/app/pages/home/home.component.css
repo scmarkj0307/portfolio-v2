@@ -148,7 +148,9 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(20px);
-  background-color: transparent;
+  background: rgba(0, 0, 0, 0.4);               /* semi-transparent black */
+  backdrop-filter: blur(10px);                  /* frosted glass blur */
+  -webkit-backdrop-filter: blur(10px); 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 

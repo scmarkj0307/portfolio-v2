@@ -157,14 +157,30 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
   }
 
   navigateTo(title: string) {
+
     switch (title) {
       case 'About Me':
+        this.sharedService.setHomeState(1);
         this.router.navigate(['/about']);
         break;
       case 'Projects':
+        this.sharedService.setHomeState(1);
         this.router.navigate(['/projects']);
         break;
+      case 'Experience':
+        this.sharedService.setHomeState(1);
+        this.router.navigate(['/experience']);
+        break;
+      case 'Technologies':
+        this.sharedService.setHomeState(1);
+        this.router.navigate(['/technologies']);
+        break;
+      case 'Certificates':
+        this.sharedService.setHomeState(1);
+        this.router.navigate(['/certificates']);
+        break;
       case 'Contacts':
+        this.sharedService.setHomeState(1);
         this.router.navigate(['/contact']);
         break;
     }

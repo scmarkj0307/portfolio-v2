@@ -1,45 +1,194 @@
+/* Layout Container */
+.section-container {
+  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
 
-      /* Cosmic Background */
-      .cosmos-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: radial-gradient(
-          ellipse at bottom,
-          #1b2735 0%,
-          #090a0f 100%
-        );
-        overflow: hidden;
-      }
+/* Overlay Container */
+.overlay {
+  width: 100%;
+  flex: 1 0 auto;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
 
-      .stars-container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(
-            1px 1px at 25% 25%,
-            white,
-            rgba(0, 0, 0, 0)
-          ),
-          radial-gradient(1px 1px at 50% 50%, white, rgba(0, 0, 0, 0)),
-          radial-gradient(2px 2px at 75% 75%, white, rgba(0, 0, 0, 0)),
-          radial-gradient(2px 2px at 100% 100%, white, rgba(0, 0, 0, 0));
-        background-size: 200px 200px, 300px 300px, 400px 400px, 600px 600px;
-        background-repeat: repeat;
-        animation: twinkle 10s linear infinite;
-      }
+/* Inner content */
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
 
-      @keyframes twinkle {
-        0% {
-          background-position: 0 0, 0 0, 0 0, 0 0;
-        }
-        100% {
-          background-position: 200px 200px, 300px 300px, 400px 400px,
-            600px 600px;
-        }
-      }
+/* Title */
+h1, h2 {
+  margin-bottom: 1rem;
+}
 
-   
+h2 {
+  font-weight: normal;
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+h5, p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+/* Cards Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Full-width card */
+.card.full {
+  grid-column: span 2;
+}
+
+@media (max-width: 700px) {
+  .card.full {
+    grid-column: span 1;
+  }
+
+  .section-container {
+    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 5.3rem;
+  }
+
+  .overlay {
+    padding: 1rem 0.5rem;
+  }
+
+  .content {
+    padding: 0;
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+}
+
+/* Card Style */
+.card {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.85);       /* Soft white */
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 160px; /* Increased width */
+  height: 100px;  /* Decreased height */
+  object-fit: cover; /* Ensures image is cropped nicely */
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+/* Background Options */
+.image-background {
+  background-image: url('/assets/images/bga.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cosmos-background {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  position: relative;
+}
+
+.cosmos-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: 
+    radial-gradient(1px 1px at 25% 25%, white, rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 50% 50%, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 75% 75%, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 100% 100%, white, rgba(0, 0, 0, 0));
+  background-size: 200px 200px, 300px 300px, 400px 400px, 600px 600px;
+  background-repeat: repeat;
+  animation: twinkle 10s linear infinite;
+}
+
+@keyframes twinkle {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 200px 200px, 300px 300px, 400px 400px, 600px 600px;
+  }
+}
+
+.plain-white-background {
+  background: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-color: #d8c8b0;
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-repeat: repeat;
+  color: #2e1f14;
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.plain-white-background .card{
+  color: #090a0f;
+}
+
+.plain-white-background .overlay {
+  background: rgba(255, 248, 240, 0.35);
+  backdrop-filter: blur(3px);
+  color: #3d2b1f;
+}
+
+/* Optional: Prevent iOS rubber band scroll */
+body {
+  overscroll-behavior: none;
+}
+
+

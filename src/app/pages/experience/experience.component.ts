@@ -4,14 +4,14 @@ import { SharedService } from '../../shared.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-experience',
   standalone: true,
   imports: [],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  templateUrl: './experience.component.html',
+  styleUrl: './experience.component.css'
 })
-export class ProjectsComponent implements OnInit, OnDestroy {
-   private subscription!: Subscription;
+export class ExperienceComponent implements OnInit, OnDestroy{
+  private subscription!: Subscription;
 
   constructor(
     private router: Router,

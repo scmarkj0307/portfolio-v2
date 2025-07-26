@@ -2,15 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from '../../shared.service';
 import { Subscription } from 'rxjs';
-
 @Component({
-  selector: 'app-projects',
+  selector: 'app-technologies',
   standalone: true,
   imports: [],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  templateUrl: './technologies.component.html',
+  styleUrl: './technologies.component.css'
 })
-export class ProjectsComponent implements OnInit, OnDestroy {
+export class TechnologiesComponent implements OnInit, OnDestroy {
    private subscription!: Subscription;
 
   constructor(
