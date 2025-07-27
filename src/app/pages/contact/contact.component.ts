@@ -2,16 +2,22 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from '../../shared.service';
 import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
 export class ContactComponent implements OnInit, OnDestroy {
+  backgroundState = 2 
   private subscription!: Subscription;
+  private destroy$ = new Subject<void>();
+  
 
   constructor(
     private router: Router,
@@ -24,9 +30,25 @@ export class ContactComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       }
     });
+
+     this.sharedService.backgroundState$
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((state) => {
+            this.backgroundState = state;
+          });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+      this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+   getBackgroundClass(): string {
+    switch (this.backgroundState) {
+      case 0: return 'cosmos-background';
+      case 1: return 'plain-white-background';
+      default: return 'image-background';
+    }
   }
 }
