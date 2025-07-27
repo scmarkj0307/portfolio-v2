@@ -176,7 +176,30 @@
   background-position: center;
   filter: brightness(0.9);
   transition: filter 0.3s ease;
+  position: relative; /* Required for .tap-icon absolute position */
+
 }
+
+.tap-icon-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px;
+  /* border-radius: 50%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); */
+  z-index: 2;
+}
+
+.tap-icon {
+  width: 20px;
+  height: 26px;
+  display: block;
+  pointer-events: none;
+}
+
 
 .card-content {
   position: absolute;

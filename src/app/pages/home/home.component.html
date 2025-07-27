@@ -22,10 +22,11 @@
             *ngFor="let card of cards"
             (click)="navigateTo(card.title)"
           >
-            <div
-              class="card-image"
-              [ngStyle]="{ 'background-image': 'url(' + card.image + ')' }"
-            ></div>
+            <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + card.image + ')' }">  
+            <div class="tap-icon-wrapper">
+                <img src="../../../assets/images/whiteclick.png" alt="Tap here" class="tap-icon" />
+              </div> 
+            </div>
             <div class="card-content">
               <h3>{{ card.title }}</h3>
               <p>{{ card.description }}</p>
