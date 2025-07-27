@@ -30,10 +30,10 @@
     <!-- Right: Form -->
     <div class="contact-right">
       <h2>Leave me a little info, and we'll be in touch.</h2>
-      <form>
-        <input type="text" placeholder="Name *" required>
-        <input type="email" placeholder="Email *" required>
-        <textarea rows="5" placeholder="Inquiry Details *" required></textarea>
+      <form (submit)="sendEmail($event)">
+        <input type="text" name="user_name" placeholder="Name *" required>
+        <input type="email" name="user_email" placeholder="Email *" required>
+        <textarea name="message" rows="5" placeholder="Inquiry Details *" required></textarea>
         <button type="submit">SUBMIT</button>
       </form>
     </div>
