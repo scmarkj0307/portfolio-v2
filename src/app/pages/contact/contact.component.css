@@ -236,7 +236,13 @@ body {
 }
 
 .contact-right button:hover {
-  background-color: #004f99;
+  background-color: whitesmoke;
+  color: black;
+}
+
+.plain-white-background .contact-right button:hover {
+  background-color: #d8c8b0;
+  color: black;
 }
 
 
