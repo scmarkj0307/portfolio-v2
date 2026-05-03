@@ -1,7 +1,7 @@
 /* Layout Container */
 .section-container {
-  height: 100vh;
-  min-height: 100vh;
+  height: var(--app-viewport-height);
+  min-height: var(--app-viewport-height);
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -72,8 +72,8 @@ h3, p {
   }
 
   .section-container {
-    height: 100vh;
-    min-height: 100vh;
+    height: var(--app-viewport-height);
+    min-height: var(--app-viewport-height);
     padding-bottom: 5.3rem;
   }
 

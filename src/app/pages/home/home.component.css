@@ -1,6 +1,6 @@
 /* Shared full-screen section layout */
 .section-container {
-  height: 100vh;
+  height: var(--app-viewport-height);
   width: 100vw;
   position: relative;
   overflow-y: auto;
@@ -140,8 +140,10 @@
 
 .card {
   position: relative;
-  width: 300px;
-  height: 250px;
+  width: 100%;
+  max-width: 17rem;
+  aspect-ratio: 6 / 5;
+  height: auto;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
@@ -218,7 +220,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
   opacity: 0;
   transition: opacity 0.3s ease;
   text-align: center;
@@ -234,8 +236,8 @@
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 👈 2 columns by default */
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
   margin-top: 2rem;
   width: 100%;
   justify-items: center;
@@ -243,48 +245,48 @@
 }
 
 .content .card-grid {
-  max-width: 960px;
+  max-width: 1168px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.home-grid-section .card-grid {
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+}
 
-/* For larger screens: 3 columns if enough space */
+@media (max-width: 900px) {
+  .home-grid-section .card-grid {
+    padding-top: calc(1.5rem + env(safe-area-inset-top));
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+  }
+}
+
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    max-width: 19rem;
+  }
+}
+
 @media (min-width: 900px) {
   .card-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-}
 
-/* For small screens: stack cards in 1 column */
-@media (max-width: 600px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-
-/* Responsive: Nothing needed for card size now */
-@media (min-width: 600px) {
   .card {
-    font-size: 1rem;
+    max-width: 21rem;
   }
 }
 
-@media (min-width: 900px) {
-  .card {
-    font-size: 1rem;
-    width: 225px;       /* ✅ Fixed width */
-    height: 175px;      /* ✅ Fixed height */
-  }
-
-  
-}
 
 @media (min-width: 1200px) {
   .card {
-    font-size: 1rem;
+    max-width: 23rem;
   }
 }
 

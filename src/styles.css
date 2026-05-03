@@ -1,7 +1,22 @@
+@import "driver.js/dist/driver.css";
+
 /* src/styles.css */
 
 :root {
   --app-font-family: 'Inter', sans-serif;
+  --app-viewport-height: 100vh;
+}
+
+@supports (height: 100svh) {
+  :root {
+    --app-viewport-height: 100svh;
+  }
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-viewport-height: 100dvh;
+  }
 }
 
 html, body {
@@ -9,6 +24,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  font-size: 90%;
   font-family: var(--app-font-family);
   overflow: hidden; /* if you want zero scrollbars */
 }
@@ -23,4 +39,74 @@ input,
 textarea,
 select {
   font-family: var(--app-font-family);
+}
+
+.driver-popover.navbar-tour-popover {
+  max-width: 320px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: linear-gradient(160deg, #111827 0%, #1f2937 100%);
+  color: #f9fafb;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.35);
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-description {
+  color: #d1d5db;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-progress-text {
+  color: #9ca3af;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-close-btn {
+  color: #9ca3af;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-close-btn:hover,
+.driver-popover.navbar-tour-popover .driver-popover-close-btn:focus {
+  color: #f9fafb;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-arrow-side-left {
+  border-left-color: #1f2937;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-arrow-side-right {
+  border-right-color: #1f2937;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-arrow-side-top {
+  border-top-color: #1f2937;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-arrow-side-bottom {
+  border-bottom-color: #1f2937;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-footer button {
+  padding: 0.45rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d9e4ea 0%, #b8c8d4 100%);
+  color: #12202b;
+  text-shadow: none;
+  font-weight: 700;
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-footer button:hover,
+.driver-popover.navbar-tour-popover .driver-popover-footer button:focus {
+  background: linear-gradient(135deg, #e7eef2 0%, #c8d4dc 100%);
+}
+
+.driver-popover.navbar-tour-popover .driver-popover-footer .driver-popover-btn-disabled {
+  background: #4f6472;
+  color: #d7e2e9;
+  box-shadow: none;
 }

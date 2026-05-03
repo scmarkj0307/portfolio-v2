@@ -16,6 +16,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CardSkeletonComponent } from '../../shared/card-skeleton/card-skeleton.component';
 import { SkeletonCardConfig, preloadCardAssets } from '../../shared/card-loading.util';
+import { NavbarTourService } from '../../shared/navbar/navbar-tour.service';
 
 
 @Component({
@@ -85,7 +86,8 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit, O
   constructor(
     private router: Router,
     private renderer: Renderer2,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private navbarTourService: NavbarTourService
   ) {}
 
   ngOnInit() {
@@ -192,29 +194,32 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit, O
 
     switch (title) {
       case 'About Me':
-        this.sharedService.setHomeState(2);
-        this.router.navigate(['/about']);
+        this.navigateToRoute('/about');
         break;
       case 'Projects':
-        this.sharedService.setHomeState(2);
-        this.router.navigate(['/projects']);
+        this.navigateToRoute('/projects');
         break;
       case 'Experience':
-        this.sharedService.setHomeState(2);
-        this.router.navigate(['/experience']);
+        this.navigateToRoute('/experience');
         break;
       case 'Technologies':
-        this.sharedService.setHomeState(2);
-        this.router.navigate(['/technologies']);
+        this.navigateToRoute('/technologies');
         break;
       case 'Certificates':
-        this.sharedService.setHomeState(2);
-        this.router.navigate(['/certificates']);
+        this.navigateToRoute('/certificates');
         break;
       case 'Contacts':
-        this.sharedService.setHomeState(2);
-        this.router.navigate(['/contact']);
+        this.navigateToRoute('/contact');
         break;
     }
+  }
+
+  private navigateToRoute(route: string): void {
+    this.sharedService.setHomeState(2);
+    void this.router.navigate([route]).then((didNavigate) => {
+      if (didNavigate) {
+        setTimeout(() => this.navbarTourService.startGridReturnGuide(), 0);
+      }
+    });
   }
 }

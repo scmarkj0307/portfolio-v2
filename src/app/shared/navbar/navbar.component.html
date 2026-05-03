@@ -3,7 +3,12 @@
   <ul class="nav-links">
 
     <li>
-      <a (click)="onBackgroundIconClick()" class="icon-toggle">
+      <a
+        id="navbar-theme-toggle"
+        (click)="onBackgroundIconClick()"
+        class="icon-toggle"
+        aria-label="Change portfolio theme"
+      >
         <ng-container [ngSwitch]="sharedService.getBackgroundState()">
           <i *ngSwitchCase="0" class="fas fa-sun"  title="Light Mode"></i>
           <i *ngSwitchCase="1" class="fas fa-palette" title="Default"></i>
@@ -13,16 +18,30 @@
     </li>
 
     <li>
-      <a (click)="onIconClick()" class="icon-toggle">
+      <a
+        id="navbar-layout-toggle"
+        (click)="onIconClick()"
+        class="icon-toggle"
+        aria-label="Toggle home layout"
+      >
         <ng-container [ngSwitch]="sharedService.getHomeState()">
-          <i *ngSwitchCase="0" class="fas fa-home" title="Home"></i>
-          <i *ngSwitchDefault class="fas fa-grip" title="Grid"></i>
+          <i *ngSwitchCase="0" id="navbar-home-return-icon" class="fas fa-home" title="Home"></i>
+          <i *ngSwitchDefault id="navbar-grid-return-icon" class="fas fa-grip" title="Grid"></i>
         </ng-container>
       </a>
     </li>
 
      <li>
-      <a href="https://drive.google.com/file/d/1PmJJ2Edy8sF7nx7QnnBWjK6FPWk22iqL/view?usp=drive_link" target="_blank" download class="icon-toggle" title="Download Resume">
+      <a
+        id="navbar-resume-link"
+        href="https://drive.google.com/file/d/1PmJJ2Edy8sF7nx7QnnBWjK6FPWk22iqL/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+        class="icon-toggle"
+        title="Download Resume"
+        aria-label="Open resume"
+      >
          <ng-container [ngSwitch]="sharedService.getBackgroundState()">
             <i class="fas fa-file-download"></i>
          </ng-container>
