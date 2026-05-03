@@ -3,6 +3,7 @@ import {
   ElementRef,
   AfterViewInit,
   AfterViewChecked,
+  OnDestroy,
   Renderer2,
   ViewChildren,
   QueryList,
@@ -13,18 +14,21 @@ import { SharedService } from '../../shared.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CardSkeletonComponent } from '../../shared/card-skeleton/card-skeleton.component';
+import { SkeletonCardConfig, preloadCardAssets } from '../../shared/card-loading.util';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardSkeletonComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
+export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit, OnDestroy {
   backgroundState = 2; 
   homeLabelState = 2;
+  isCardGridLoading = true;
   cards = [
   {
     title: 'About Me',
@@ -58,10 +62,19 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
   }
 ];
 
+  readonly skeletonCards: SkeletonCardConfig[] = Array.from(
+    { length: this.cards.length },
+    () => ({
+      imageHeight: 110,
+      lineWidths: ['92%', '68%']
+    })
+  );
+
 
   private letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private intervalMap = new Map<HTMLElement, ReturnType<typeof setInterval>>();
   private destroy$ = new Subject<void>();
+  private isDestroyed = false;
 
 
   @ViewChildren('cardRef') cardRefs!: QueryList<ElementRef>;
@@ -88,9 +101,12 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
       .subscribe((state) => {
         this.backgroundState = state;
       });
+
+    void this.loadCardGridAssets();
   }
 
     ngOnDestroy() {
+    this.isDestroyed = true;
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -102,7 +118,12 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
   }
 
   ngAfterViewChecked(): void {
-    if (!this.hasAnimated && this.homeLabelState === 0) {
+    if (
+      !this.hasAnimated &&
+      this.homeLabelState === 0 &&
+      !this.isCardGridLoading &&
+      this.cardRefs?.length
+    ) {
       this.hasAnimated = true;
       this.cardRefs.forEach((card, index) => {
         setTimeout(() => {
@@ -146,6 +167,17 @@ export class HomeComponent implements AfterViewInit, AfterViewChecked, OnInit {
         this.intervalMap.set(el, interval);
       });
     });
+  }
+
+  private async loadCardGridAssets(): Promise<void> {
+    await preloadCardAssets([
+      ...this.cards.map((card) => card.image),
+      '/assets/images/whiteclick.png'
+    ]);
+
+    if (!this.isDestroyed) {
+      this.isCardGridLoading = false;
+    }
   }
 
   getBackgroundClass(): string {

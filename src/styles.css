@@ -1,13 +1,26 @@
 /* src/styles.css */
 
+:root {
+  --app-font-family: 'Inter', sans-serif;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
+  font-family: var(--app-font-family);
   overflow: hidden; /* if you want zero scrollbars */
 }
 
 * {
   box-sizing: border-box;
+}
+
+.mat-typography,
+button,
+input,
+textarea,
+select {
+  font-family: var(--app-font-family);
 }

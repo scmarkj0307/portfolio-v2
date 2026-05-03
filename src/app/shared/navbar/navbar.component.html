@@ -15,15 +15,14 @@
     <li>
       <a (click)="onIconClick()" class="icon-toggle">
         <ng-container [ngSwitch]="sharedService.getHomeState()">
-          <i *ngSwitchCase="0" class="fas fa-sliders-h" title="Sliders"></i>
-          <i *ngSwitchCase="1" class="fas fa-home" title="Home"></i>
+          <i *ngSwitchCase="0" class="fas fa-home" title="Home"></i>
           <i *ngSwitchDefault class="fas fa-grip" title="Grid"></i>
         </ng-container>
       </a>
     </li>
 
      <li>
-      <a href="https://drive.google.com/file/d/1pJpzmw2RkB2S9jTKDQUhuBx0PcYJrGbV/view?usp=drive_link" target="_blank" download class="icon-toggle" title="Download Resume">
+      <a href="https://drive.google.com/file/d/1PmJJ2Edy8sF7nx7QnnBWjK6FPWk22iqL/view?usp=drive_link" target="_blank" download class="icon-toggle" title="Download Resume">
          <ng-container [ngSwitch]="sharedService.getBackgroundState()">
             <i class="fas fa-file-download"></i>
          </ng-container>

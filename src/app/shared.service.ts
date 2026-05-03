@@ -37,7 +37,7 @@ export class SharedService {
   }
 
   cycleHomeState() {
-    const newState = (this.getHomeState() + 1) % 3;
+    const newState = this.getHomeState() === 0 ? 2 : 0;
     this.setHomeState(newState);
   }
 

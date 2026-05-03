@@ -5,7 +5,7 @@
       <div class="content">
         <div>
           <h1 #hackerText>MARKJARNAIZ</h1>
-          <h2>software developer</h2>
+          <h2>software engineer</h2>
         </div>
       </div>
     </div>
@@ -16,37 +16,35 @@
     <div class="overlay">
       <div class="content">
         <div class="card-grid">
-          <div
-            class="card"
-            #cardRef
-            *ngFor="let card of cards"
-            (click)="navigateTo(card.title)"
-          >
-            <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + card.image + ')' }">  
-            <div class="tap-icon-wrapper">
-                <img src="../../../assets/images/whiteclick.png" alt="Tap here" class="tap-icon" />
-              </div> 
+          <ng-container *ngIf="isCardGridLoading; else homeCards">
+            <app-card-skeleton
+              *ngFor="let skeleton of skeletonCards"
+              [imageHeight]="skeleton.imageHeight || 110"
+              [lineWidths]="skeleton.lineWidths || ['92%', '68%']"
+            ></app-card-skeleton>
+          </ng-container>
+
+          <ng-template #homeCards>
+            <div
+              class="card"
+              #cardRef
+              *ngFor="let card of cards"
+              (click)="navigateTo(card.title)"
+            >
+              <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + card.image + ')' }">  
+              <div class="tap-icon-wrapper">
+                  <img src="../../../assets/images/whiteclick.png" alt="Tap here" class="tap-icon" />
+                </div> 
+              </div>
+              <div class="card-content">
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.description }}</p>
+              </div>
             </div>
-            <div class="card-content">
-              <h3>{{ card.title }}</h3>
-              <p>{{ card.description }}</p>
-            </div>
-          </div>
+          </ng-template>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SLIDER Section (when homeLabelState === 1) -->
-  <section *ngSwitchCase="1" [ngClass]="getBackgroundClass()" class="section-container">
-    <div class="overlay">
-      <div class="content">
-        <div
-          style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"
-        >
-          THIS SLIDER WILL BE AVAILABLE SOON...
-        </div>
-      </div>
-    </div>
-  </section>
 </div>

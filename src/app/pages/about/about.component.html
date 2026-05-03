@@ -2,54 +2,66 @@
   <div class="overlay">
     <div class="content">
       <div class="card-grid">
-        <!-- Intro -->
-        <div class="card full">
-          <h3>ABOUT ME</h3>
-          <img src="../../assets/images/me.jpg" alt="Rides" />
-          <p>Hello! I'm a developer with a deep passion for crafting clean UIs and delivering seamless user experiences.</p>
-        </div>
+        <ng-container *ngIf="isLoading; else aboutCards">
+          <app-card-skeleton
+            *ngFor="let skeleton of skeletonCards"
+            [full]="skeleton.full || false"
+            [imageHeight]="skeleton.imageHeight || 100"
+            [lineWidths]="skeleton.lineWidths || ['100%', '82%', '64%']"
+          ></app-card-skeleton>
+        </ng-container>
 
-        <!-- Coffee -->
-        <div class="card">
-          <h3>FAVORITE</h3>
-          <img src="../../../assets/images/cofee.jpg" alt="Coffee" />
-          <p>Coffee is my daily fuel, it's the perfect companion for coding.</p>
-        </div>
+        <ng-template #aboutCards>
+          <!-- Intro -->
+          <div class="card full">
+            <h3>ABOUT ME</h3>
+            <img src="../../assets/images/me.jpg" alt="Rides" />
+            <p>Hello! I'm Jhon Mark Ruiz Arnaiz, a person who builds clean, user-friendly interfaces and smooth experiences. I work on both frontend and backend, creating APIs and managing databases, and I use Docker and AWS for consistent development and deployment. I focus on writing clean, maintainable code and turning complex ideas into simple, practical solutions.
+</p>
+          </div>
 
-        <!-- Siblings -->
-        <div class="card">
-          <h3>SIBLINGS</h3>
-          <img src="../../../assets/images/siblings.jpg" alt="Siblings" />
-          <p>Their energy and laughter constantly inspire me.</p>
-        </div>
+          <!-- Coffee -->
+          <div class="card">
+            <h3>FAVORITE</h3>
+            <img src="../../../assets/images/cofee.jpg" alt="Coffee" />
+            <p>Coffee is my daily fuel, it's the perfect companion for coding.</p>
+          </div>
 
-        <!-- Rides -->
-        <div class="card">
-          <h3>HOBBY</h3>
-          <img src="../../../assets/images/rides.jpg"  alt="Motorcycle Rides" />
-          <p>I love weekend motorcycle rides, it’s how I unwind and explore the world around me.</p>
-        </div>
+          <!-- Siblings -->
+          <div class="card">
+            <h3>SIBLINGS</h3>
+            <img src="../../../assets/images/siblings.jpg" alt="Siblings" />
+            <p>Their energy and laughter constantly inspire me.</p>
+          </div>
 
-        <!-- Goals -->
-        <div class="card">
-          <h3>GOAL</h3>
-          <img src="../../../assets/images/goals.jpg"  alt="Motorcycle Rides" />
-          <p>My goal is to become a software engineer/developer who creates technologies that greatly help people.</p>
-        </div>
+          <!-- Rides -->
+          <div class="card">
+            <h3>HOBBY</h3>
+            <img src="../../../assets/images/rides.jpg"  alt="Motorcycle Rides" />
+            <p>I love weekend motorcycle rides, it’s how I unwind and explore the world around me.</p>
+          </div>
 
-        <!-- Education -->
-         <div class="card">
-          <h3>EDUCATION</h3>
-          <img src="../../assets/images/education.jpg" alt="Rides" />
-          <p>I recently graduated from STI College Caloocan with a Bachelor of Science in Computer Science, where I learned the foundations of my coding skills.</p>
-        </div>
+          <!-- Goals -->
+          <div class="card">
+            <h3>GOAL</h3>
+            <img src="../../../assets/images/goals.jpg"  alt="Motorcycle Rides" />
+            <p>My goal is to become a software engineer/developer who creates technologies that greatly help people.</p>
+          </div>
 
-         <!-- Goals -->
-        <div class="card">
-          <h3>RELATIONSHIP</h3>
-          <img src="../../../assets/images/rs.jpg"  alt="Motorcycle Rides" />
-          <p>The one who support me in my coding journey.</p>
-        </div>
+          <!-- Education -->
+           <div class="card">
+            <h3>EDUCATION</h3>
+            <img src="../../assets/images/education.jpg" alt="Rides" />
+            <p>I recently graduated from STI College Caloocan with a Bachelor of Science in Computer Science, where I learned the foundations of my coding skills.</p>
+          </div>
+
+           <!-- Goals -->
+          <div class="card">
+            <h3>RELATIONSHIP</h3>
+            <img src="../../../assets/images/rs.jpg"  alt="Motorcycle Rides" />
+            <p>The one who support me in my coding journey.</p>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
